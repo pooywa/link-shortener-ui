@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 interface URLFormProps {
@@ -10,11 +12,20 @@ const URLForm: React.FC<URLFormProps> = ({ onSubmit, loading }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (longUrl.trim() === "") {
+    if (!isValidUrl(longUrl)) {
       alert("Please enter a valid URL");
       return;
     }
     onSubmit(longUrl);
+  };
+
+  const isValidUrl = (url: string): boolean => {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
   };
 
   return (
