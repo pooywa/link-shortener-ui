@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import URLForm from "../components/URLForm";
+import URLResult from "../components/URLResult";
 
 const Home: React.FC = () => {
   const [shortCode, setShortCode] = useState<string>("");
@@ -20,7 +21,13 @@ const Home: React.FC = () => {
       setLoading(false);
     }
   };
-  return <div></div>;
+  return (
+    <div>
+      <h1>URL Shortener</h1>
+      <URLForm onSubmit={handleShorten} loading={loading} />
+      {shortCode && <URLResult shortCode={shortCode} />}
+    </div>
+  );
 };
 
 export default Home;
