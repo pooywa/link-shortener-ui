@@ -31,13 +31,18 @@ const URLForm: React.FC<URLFormProps> = ({ onSubmit, loading }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
+        className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
         type="url"
         value={longUrl}
         placeholder="Enter URL"
         onChange={(e) => setLongUrl(e.target.value)}
         required
       />
-      <button type="submit" disabled={loading}>
+      <button
+        className="block mt-2 bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+        type="submit"
+        disabled={loading}
+      >
         {loading ? "Shortening..." : "Shorten"}
       </button>
     </form>
